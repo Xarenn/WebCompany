@@ -1,0 +1,20 @@
+.AppearTransition-appear {
+    opacity: 0.001;
+    transform: rotateZ(-10deg)
+  }
+  
+  .AppearTransition-enter {
+    opacity: 0.01;
+    transform: translate3d(200px);
+  }
+  
+  .AppearTransition-enter.AppearTransition-enter-active {
+    transition: all 1s ease-out;
+  }
+  
+  .AppearTransition-appear.AppearTransition-appear-active {
+    opacity: 1;
+    transform: translateY(0px);
+    transition: all 0.5s ease-out;
+  }
+  
