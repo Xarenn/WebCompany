@@ -1,38 +1,25 @@
 import React, { Component } from 'react';
+import { getEmail, makeAuth, IsAuth, setEmail } from '../components/Login/Auth'
 
 export function UserData(state, action) {
     state = {
-        email: getName(),
+        email: getEmail(),
         passw: "",
         authenticated: IsAuth()
     }
         switch (action.type) {
+        case 'USER_LOGIN':
+            let email = ""+action.payload.email;
+            if(!!action.payload.email && email.length > 0) {
+                setEmail(action.payload.email);
+            }
         case 'USER_AUTH':
-            if(action.payload.authenticated === false) {
-                //Fake Auth next version
-                action.payload.authenticated = true;
-                state = action.payload;
-                setName(action.payload.email);
-                makeAuth()
+            if(state.authenticated === false) {
+                let auth = makeAuth(action.payload.email, action.payload.passw)
+                action.payload.authenticated = auth;
             }
             return action.payload;
             break;
     }
     return state;
-}
-
-function IsAuth() {
-    return !!localStorage.getItem("auth");
-}
-
-function makeAuth() {
-    localStorage.setItem("auth", true);
-}
-
-function getName() {
-    return localStorage.getItem("name");
-}
-
-function setName(name) {
-    localStorage.setItem("name", name);
 }

@@ -13,20 +13,6 @@ function mapStateToProps(state) {
 
 class CustomNavBar extends Component {
 
-    navItems = () => {
-        <Nav>
-            <NavItem eventKey={3} componentClass={ Link } to="Contact" href="/Contact">
-            Contact
-            </NavItem>
-            <NavItem eventKey={4} componentClass={ Link } to="Account" href="/Account">
-            Account
-            </NavItem>
-            <NavItem eventKey={5} componentClass={ Link } to="About" href="/About">
-            About
-            </NavItem>
-        </Nav>
-    }
-
     isAuthenticated = () => {
         return this.props.user.authenticated;
     }

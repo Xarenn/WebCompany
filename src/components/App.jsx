@@ -7,6 +7,7 @@ import LoginPage from './LoginPage';
 import Home from './Home';
 import CustomNavBar from './CustomNavBar';
 import Account from './Account/Account';
+import Logout from './Logout';
 
 class App extends Component {
   constructor(props) {
@@ -21,6 +22,7 @@ class App extends Component {
             <Route exact path="/" component={ Home } />
             <Route exact path="/LoginPage" component={ LoginPage } />
             <Route exact path="/Account" component={ Account } />
+            <Route exact path="/Logout" component={ Logout } />
             </div>
         </Router>
         );

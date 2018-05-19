@@ -6,6 +6,7 @@ import { connect} from 'react-redux';
 import { Authenticate } from './Auth'
 import {bindActionCreators} from 'redux';
 import {store} from '../../index'
+import SuccessLogin from './SuccessfulLogin'
 
 function mapStateToProps(state) {
     return {
@@ -27,7 +28,7 @@ class LoginForm extends Component {
             passw: ""
         }
     }
-    validationEmail(email) {
+    validationEmail = (email) =>  {
         if(email.value.length > 0) {
             return "success"
         }
@@ -36,7 +37,7 @@ class LoginForm extends Component {
         }
     }
 
-    validationPassword(passw) {
+    validationPassword = (passw) => {
         if(passw.value.length > 0) {
             return "success"
         }
@@ -60,28 +61,31 @@ class LoginForm extends Component {
             this.state.validationStatePassw === "success") {
                 this.props.user.email = this.state.email.value;
                 this.props.user.passw = this.state.passw.value;
-
-                console.log(store.getState());
+                if(this.props.user.authenticated === false) {
+                    this.state.error = "Incorrect Login or Password"
+                }
                 this.props.Authenticate(this.props.user);
                 //console.log(this.props.user)
         }
+        else {
+            this.state.error = "Incorrect Login or Password"
+        }
+        
     }
 
-
     render() {
-        const { from } = { from: { pathname: "/" } };
-        if (this.props.user.authenticated === true) {
-            return <Redirect to={from} />;
-        }else{
+        if(this.props.user.authenticated === true) { return <SuccessLogin /> }
+        else {
         return(
-                <Form componentClass="fieldset" horizontal>
+                <Form componentClass="fieldset" horizontal>     
+                <h5 style={{color:'red', float:'center'}}>{this.state.error}</h5>
                 <FormGroup controlId="EmailValidation" validationState={this.state.validationStateEmail}>
-                <ControlLabel>E-mail</ControlLabel>
+                <ControlLabel>E-mail </ControlLabel>
                     <FormControl inputRef={input => this.state.email = input} type="email" onChange={this.validation} onClick={this.validation}/>
                     <FormControl.Feedback />
                 </FormGroup>{' '}
                 <FormGroup controlId="passwordValidation" validationState={this.state.validationStatePassw}>
-                    <ControlLabel>Password</ControlLabel>
+                    <ControlLabel>Password </ControlLabel>
                     <FormControl inputRef={input => this.state.passw = input} type="password" onChange={this.validation} onClick={this.validation}/>
                     <FormControl.Feedback />
                 </FormGroup>{' '}
@@ -92,6 +96,7 @@ class LoginForm extends Component {
             )
         }
     }
+    
 }
 
 export default connect(mapStateToProps, matchDispatchToProps)(LoginForm);
