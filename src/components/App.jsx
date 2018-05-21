@@ -23,7 +23,7 @@ class App extends Component {
             <Route exact path="/LoginPage" component={ LoginPage } />
             <Route exact path="/Account" component={ Account } />
             <Route exact path="/Logout" component={ Logout } />
-            </div>
+          </div>
         </Router>
         );
       }

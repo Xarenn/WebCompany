@@ -26,7 +26,7 @@ export const IsAuth = () =>  {
 
 export function makeAuth(email, passw) {
     let mail = "" + email; 
-    if (mail == "dryndy") {
+    if (mail == "dryndy@gmail.com") {
         localStorage.setItem("at", true); 
         return true; 
     }
@@ -46,4 +46,9 @@ export function setEmail(email) {
 
 export function clearAuth() {
     localStorage.clear()
+}
+
+export function validatePassword() {
+    //validate with axios->
+    return true;
 }

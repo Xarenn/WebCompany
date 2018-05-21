@@ -11,8 +11,6 @@ export default class Home extends Component {
             isToggleOn: true,
             isLoggedIn: false
         }
-
-        this.handleClick = this.handleClick.bind(this);
     }
 
     showLabel() {
@@ -34,7 +32,7 @@ export default class Home extends Component {
         }
     }
 
-    handleClick() {
+    handleClick = () => {
         this.setState(prevState => ({
             isToggleOn: !prevState.isToggleOn
         }));
@@ -42,8 +40,8 @@ export default class Home extends Component {
 
     render() {
         return (
-            <Grid style={{float: 'center'}}>
-             <Jumbotron style={{float: 'center', margin: 20, marginBottom:100}}>
+            <Grid style={{float:"center"}}>
+             <Jumbotron style={{float: 'center', marginBottom:100}}>
                 <h1>Complex FF</h1>
                 <p> Lorem impsum dada </p>
                 <Button bsStyle="primary" onClick={this.handleClick}> Get In
@@ -51,26 +49,30 @@ export default class Home extends Component {
                  {this.showLabel()}
 
             </Jumbotron>  
-            // INFO 
             <Grid>
                 <Row className="show-grid">
                 <Col sm={6} md={3}>
-                    <code>&lt;{'Col sm={6} md={3}'} /&gt;</code>
+                  <Jumbotron>
+                    <h3>1 column</h3>
+                  </Jumbotron>
                 </Col>
                 <Col sm={6} md={3}>
-                    <code>&lt;{'Col sm={6} md={3}'} /&gt;</code>
+                <Jumbotron>
+                    <h3>2 column</h3>
+                  </Jumbotron>>
                 </Col>
                 <Col sm={6} md={3}>
-                    <code>&lt;{'Col sm={6} md={3}'} /&gt;</code>
+                <Jumbotron>
+                    <h3>3 column</h3>
+                  </Jumbotron>
                 </Col>
                 <Col sm={6} md={3}>
-                    <code>&lt;{'Col sm={6} md={3}'} /&gt;</code>
+                <Jumbotron>
+                    <h3>4 column</h3>
+                  </Jumbotron>
                 </Col>
                 </Row>
             </Grid>
-
-            
-
             </Grid>
         )
     }

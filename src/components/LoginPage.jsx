@@ -12,10 +12,10 @@ export default class LoginPage extends Component {
     render() {
         return (
             <Grid style={{float: 'center'}}>
-             <Jumbotron style={{float: 'center', margin: 20, paddingBottom:200}}>
-                <h1>Login</h1>
+             <Jumbotron style={{float: 'center', margin: 0}}>
+                <h1 style={{float:"center"}}>Login</h1>
                 <p> Enter your Login and Password </p>
-                    <LoginForm/>
+                <LoginForm/>
             </Jumbotron>  
             </Grid>
         )
