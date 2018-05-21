@@ -20,7 +20,7 @@ class Account extends Component {
         if(this.props.user.authenticated === true){
                 return( 
                     <Grid style={{margin:0}}>
-                    <Form componentClass="fieldset" inline>     
+                    <Form componentClass="fieldset" inline style={{paddingBottom:200}}>     
                     <FormGroup>
                         <Jumbotron>
                     <Table>
@@ -54,9 +54,11 @@ class Account extends Component {
                     </Table>
                     </Jumbotron>
                     </FormGroup>{' '}
-                    <FormGroup style={{paddingLeft: 10, float: 'right', textAlign: 'center'}}>
-                        <Jumbotron>
-                            Fileds
+                    <FormGroup style={{right: 200, float: 'right', textAlign: 'center', paddingBottom:200}}>
+                        <Jumbotron style={{paddingLeft:100, position: 'absolute', right: 100, float: 'right', textAlign: 'center', paddingBottom:300,paddingRight:100}}>
+                           <h4>rthrthrthrthrthrthrthrthrt
+                            </h4>
+                            <h5>tahks</h5>
                         </Jumbotron>
                     </FormGroup>{' '}
                     </Form>
