@@ -16,7 +16,6 @@ class Account extends Component {
     }
 
     render() {
-        console.log(store.getState());
         if(this.props.user.authenticated === true){
                 return( 
                     <Grid style={{margin:0}}>

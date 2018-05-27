@@ -1,39 +1,57 @@
-const API = "localhost:3333/api"
-const key = "Secret_Key"
+import axios from 'axios'
+
+const API = "http://127.0.0.1:8081/api"
 
 export function Authenticate(user) {
     return {
         type:'USER_AUTH', 
-        payload:user
+        payload: user
     }; 
 }
 
 export function Login(user) {
     return {
         type:'USER_LOGIN', 
-        payload:user.email
+        payload: user.email
     }; 
 }
 
 export const IsAuth = () =>  {
-    let token = " " + localStorage.getItem('at')
-    if (localStorage.getItem('at') === 'true') {
-        return true; 
-    }else {
-        return false;
-     }
-}
-
-export function makeAuth(email, passw) {
-    let mail = "" + email; 
-    if (mail == "dryndy@gmail.com") {
-        localStorage.setItem("at", true); 
+    if (localStorage.getItem("at") === "true") {
         return true; 
     }
+    if(localStorage.getItem("at") === "false") {
+        return false;
+    }
     else {
-    localStorage.setItem("at", false); 
-    return false; 
- }
+        return "";
+    }
+}
+/*
+{
+    "password": "password",
+    "email": "dryndy@gmail.com"
+}*/
+export async function makeAuth(email, passw) {
+    let token = "";
+    try {
+    const response = await axios.get(API+"/auth", {
+        params: {
+        "password": passw,
+        "email": email
+        }
+    });
+    if(response.data !== "Auth failed") {
+        token = response.data.substring(5);
+        setEmail(email);
+        localStorage.setItem("token", token);
+        localStorage.setItem("at", "true");
+    }
+    }catch(error) {
+        localStorage.setItem("token", "");
+        localStorage.setItem("at", "false");
+        console.log(error);
+    }
 }
 
 export function getEmail() {
