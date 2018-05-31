@@ -16,6 +16,15 @@ export function Login(user) {
     }; 
 }
 
+export function getToken() {
+    var token = ""+localStorage.getItem("token");
+    if(!(token === "")) {
+        if(!(token.length === 0)) {
+            return token;
+        }else {return null;}
+    }else {return null;}
+}
+
 export const IsAuth = () =>  {
     if (localStorage.getItem("at") === "true") {
         return true; 

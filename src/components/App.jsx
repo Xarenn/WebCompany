@@ -8,6 +8,7 @@ import Home from './Home';
 import CustomNavBar from './CustomNavBar';
 import Account from './Account/Account';
 import Logout from './Logout';
+import Invoice from './Account/Invoice'
 
 class App extends Component {
   constructor(props) {
@@ -23,6 +24,7 @@ class App extends Component {
             <Route exact path="/LoginPage" component={ LoginPage } />
             <Route exact path="/Account" component={ Account } />
             <Route exact path="/Logout" component={ Logout } />
+            <Route exact path="/invoice" component={ Invoice } />
           </div>
         </Router>
         );
