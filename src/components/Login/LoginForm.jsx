@@ -80,8 +80,6 @@ class LoginForm extends Component {
         }
     }
 
-    
-
     login = () => {
     this.loginCheck().then(function (value) {
     });
