@@ -2,7 +2,8 @@ import React,  {Component }from 'react';
 import {getEmail, makeAuth, IsAuth, getToken, setEmail } from '../components/Login/Auth'
 import { isInvoice } from '../components/Account/InvoiceUtil';
 
-export function UserData(state, action) {
+
+export default function UserData(state, action) {
     state =  {
         email: getEmail(), 
         passw: "", 
@@ -20,9 +21,15 @@ export function UserData(state, action) {
 
         case 'USER_AUTH':
             if (state.authenticated === "" || state.authenticated === false) {
-                makeAuth(action.payload.email, action.payload.passw);
+                makeAuth(action.payload.email, action.payload.passw).then(function (value){
+                    if(!value) {
+                        localStorage.setItem("token", "");
+                        localStorage.setItem("at", "false");
+                    }
+                    window.location.reload();
+                })
             }
-            return action.payload; 
+            return action.payload;
 
         case 'USER_INVOICE':
             if(isInvoice(action.payload.idInvoice)) {

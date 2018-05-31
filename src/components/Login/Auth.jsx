@@ -55,10 +55,16 @@ export async function makeAuth(email, passw) {
         setEmail(email);
         localStorage.setItem("token", token);
         localStorage.setItem("at", "true");
+        return true;
+    }else {
+        localStorage.setItem("token", "");
+        localStorage.setItem("at", "false");
+        return false;
     }
     }catch(error) {
         localStorage.setItem("token", "");
         localStorage.setItem("at", "false");
+        return false;
         console.log(error);
     }
 }
@@ -73,9 +79,4 @@ export function setEmail(email) {
 
 export function clearAuth() {
     localStorage.clear()
-}
-
-export function validatePassword() {
-    //validate with axios->
-    return true;
 }

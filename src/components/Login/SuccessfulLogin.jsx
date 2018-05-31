@@ -20,7 +20,6 @@ export default class SuccessfulLogin extends Component {
     }
 
     componentWillMount() {
-        window.location.reload();
         this.setState(prevState => ({loading: false}))
     }
 

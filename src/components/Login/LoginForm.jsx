@@ -27,6 +27,7 @@ class LoginForm extends Component {
             validationStateEmail: null,
             email: "",
             passw: "",
+            authStatus: false
         }
     }
     validateEmail = (email) => {
@@ -44,7 +45,7 @@ class LoginForm extends Component {
     }
 
     validationPassword = (passw) => {
-        if(validatePassword()) {
+        if(passw.value.length > 0) {
             return "success"
         }
         else {
@@ -58,56 +59,63 @@ class LoginForm extends Component {
             validationStateEmail: this.validationEmail(prevState.email),
         }));
     }
-    login = async () => {
+    loginCheck = async () => {
         this.validation();
         if(this.state.validationStateEmail === "success" &&
             this.state.validationStatePassw === "success") {
                 this.props.user.email = this.state.email.value;
                 this.props.user.passw = this.state.passw.value;
                 try {
+                    this.state.authStatus = true;
                     const func = await this.props.Authenticate(this.props.user);
-                    const afterfunc = await this.authCheck();
+                    return !!func;
                 }catch(error) {
-                    console.log(error);
+                    this.state.authStatus = false;
+                    console.log(error);   
+                    return false;             
                 } 
-                
-            }
-        else {
+            }else {
             this.state.error = "Incorrect Login or Password"
+            return false;
         }
     }
 
-    authCheck = async () => {
-        if(localStorage.getItem("at") === "false") {
-            localStorage.setItem("at", "");
-            window.location.reload();
-        }else { window.location.reload(); }
+    
+
+    login = () => {
+    this.loginCheck().then(function (value) {
+    });
     }
 
     render() {
+        window.onunload = (ev) => {
+            if(!this.state.authStatus && IsAuth() === false) {
+                this.state.authStatus = false;
+                localStorage.setItem('at','');
+            }
+        }
         if(IsAuth()) { return <SuccessLogin /> }
         if(IsAuth() === false) {
-            this.state.error = "Incorrect Login or Password";
+            this.state.error = "Incorrect Login or Password"
             return(
-                    <Form componentClass="fieldset" horizontal style={{float:"center", paddingLeft:30, paddingRight:30}}>     
-                    <AuthenticatedForm />
-                    <FormGroup controlId="EmailValidation" validationState={this.state.validationStateEmail}>
-                    <ControlLabel>E-mail </ControlLabel>
-                        <FormControl inputRef={input => this.state.email = input} type="email" onChange={this.validation} onClick={this.validation}/>
-                        <FormControl.Feedback />
-                    </FormGroup>{' '}
-                    <FormGroup controlId="passwordValidation" validationState={this.state.validationStatePassw}>
-                        <ControlLabel>Password </ControlLabel>
-                        <FormControl inputRef={input => this.state.passw = input} type="password" onChange={this.validation} onClick={this.validation}/>
-                        <FormControl.Feedback />
-                    </FormGroup>{' '}
-                    <Button className="Submit" bsStyle="primary" onClick={this.login}>
-                Login
-                </Button>
-                    </Form>
-                )
-        }
-        if(IsAuth() === "") {
+                <Form componentClass="fieldset" horizontal style={{float:"center", paddingLeft:30, paddingRight:30}}>     
+                <h5 style={{color:'red', float:'center'}}>{this.state.error}</h5>
+                <FormGroup controlId="EmailValidation" validationState={this.state.validationStateEmail}>
+                <ControlLabel>E-mail </ControlLabel>
+                    <FormControl inputRef={input => this.state.email = input} type="email" onChange={this.validation} onClick={this.validation}/>
+                    <FormControl.Feedback />
+                </FormGroup>{' '}
+                <FormGroup controlId="passwordValidation" validationState={this.state.validationStatePassw}>
+                    <ControlLabel>Password </ControlLabel>
+                    <FormControl inputRef={input => this.state.passw = input} type="password" onChange={this.validation} onClick={this.validation}/>
+                    <FormControl.Feedback />
+                </FormGroup>{' '}
+                <Button className="Submit" bsStyle="primary" onClick={this.login}>
+            Login
+            </Button>
+                </Form>
+            )
+        }else {
             return(
                 <Form componentClass="fieldset" horizontal style={{float:"center", paddingLeft:30, paddingRight:30}}>     
                 <h5 style={{color:'red', float:'center'}}>{this.state.error}</h5>
