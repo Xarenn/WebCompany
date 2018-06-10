@@ -23,11 +23,13 @@ class Invoice extends Component {
     constructor(props) {
         super(props)
     }
-
     state = {
+        redirect: false,
         edit: false,
+        idInvoice: this.props.user.idInvoice,
         invoice: {},
-        invoiced: {
+        invoiced: this.props.editinvoice === "" || this.props.editinvoice == null ?
+        { 
             "id": 2,
             "userId": 2,
             "value": 2,
@@ -73,12 +75,12 @@ class Invoice extends Component {
                     "priceBrutto": 2
                 }
             ]
-        }
+        } : this.props.editinvoice
     };
 
     componentWillMount() {
-        window.onunload = (event) => {
-            <Redirect to={"/Account"} />
+        window.onunload = (ev) => {
+            this.setRedirect();
         }
         let idInv = this.props.user.idInvoice
         try { 
@@ -112,10 +114,10 @@ class Invoice extends Component {
          , {text: "vat", dataField: "vat"}, {text: "vat amount", dataField:"vatAmount"},
           {text:"price brutto", dataField:"priceBrutto"}];
         let items = this.state.invoiced.items;
-
+        
         return (<Jumbotron style={{margin:100}}><Grid>
             <Button bsStyle="primary" onClick={() => this.editInvoice()}>Edit Invoice</Button>
-            <h2 style={{marginLeft:200, marginBottom:50}}><Label>FAKTURA VAT NR {this.props.user.idInvoice}</Label></h2>
+            <h2 style={{marginLeft:200, marginBottom:50}}><Label>FAKTURA VAT NR {this.state.idInvoice} </Label></h2>
             {this.state.edit ? <InvoiceEdit invoice={this.state.invoiced} items = {items} columns = {columns} /> : 
             <Grid>
             <Form inline style = {{marginBottom:150}}>
