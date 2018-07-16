@@ -4,6 +4,7 @@ import {bindActionCreators} from 'redux';
 import { connect} from 'react-redux';
 import axios from 'axios'
 import { Grid, Button } from 'react-bootstrap'
+import Menu, {Item as MenuItem} from 'rc-menu'
 
 import 'rc-menu/assets/index.css';
 
@@ -54,12 +55,12 @@ class Invoices extends Component {
 
     render() {
         return(
-        <Grid style={{marginRight:-200}}>
-        <ul>
-        {this.state.invoices.map(invoice => <li key = {invoice.id} onClick={() => this.getInvoice(invoice.id)}>
-        Faktura nr #{invoice.id}{" "}{invoice.seller}{" "}{invoice.buyer}</li>)
+        <Grid style={{marginRight:-300}}>
+        <Menu style={{marginLeft:50, marginRight:100, width: 300}}>
+        {this.state.invoices.map(invoice => <MenuItem  style={{cursor: 'pointer'}} key = {invoice.id} onClick={() => this.getInvoice(invoice.id)}>
+        Faktura nr #{invoice.id}{" "}{invoice.seller}{" "}{invoice.buyer}</MenuItem >)
         }
-        </ul>
+        </Menu>
         {this.state.clicked ? <Redirect to="/invoice"/> : this.state.clicked=false}
         </Grid>
         )

@@ -2,16 +2,14 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { FormControl, FormGroup, Form, Label,
     Grid, Jumbotron, Button} from 'react-bootstrap';
-import {store} from '../../index';
 import { connect} from 'react-redux';
 import BootstrapTable from 'react-bootstrap-table-next';
 import 'react-bootstrap-table-next/dist/react-bootstrap-table2.min.css';
-import { Redirect } from 'react-router-dom';
 import {createPdf} from './invoices/InvoicePdf';
 import InvoiceEdit from './invoiceEdit';
 
-const API = "http://127.0.0.1:8081/api"
 
+const API = "http://127.0.0.1:8081/api"
 
 function mapStateToProps(state) {
     return {

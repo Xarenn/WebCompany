@@ -26,7 +26,7 @@ class AuthAccount extends Component {
             </Jumbotron>
             </FormGroup>{' '}
             <FormGroup style={{right: 200, float: 'right', textAlign: 'center', paddingBottom:200}}>
-                <Jumbotron style={{paddingLeft:100, position: 'absolute', right: 100, float: 'right', textAlign: 'left', paddingBottom:300,paddingRight:100}}>
+                <Jumbotron style={{position:'absolute', paddingLeft:100, right: 100, float: 'right', textAlign: 'center', paddingBottom:300,paddingRight:100}}>
                    <h4>Statistics</h4>
                     <Statistics/>
                 </Jumbotron>
