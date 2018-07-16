@@ -2,9 +2,10 @@ import React, { Component } from 'react';
 import { Redirect } from 'react-router'
 import {bindActionCreators} from 'redux';
 import { connect} from 'react-redux';
-import Invoice  from './Invoice'
 import axios from 'axios'
-import {store} from '../../index';
+import { Grid, Button } from 'react-bootstrap'
+
+import 'rc-menu/assets/index.css';
 
 const API = "http://127.0.0.1:8081/api"
 
@@ -53,13 +54,14 @@ class Invoices extends Component {
 
     render() {
         return(
-            <div>
-            <ul>{
-            this.state.invoices.map(invoice => <li key = {invoice.id} onClick={() => this.getInvoice(invoice.id)}>
-                Faktura nr #{invoice.id}{" "}{invoice.seller}</li>)
-              }</ul>
-              {this.state.clicked ? <Redirect to="/invoice"/> : this.state.clicked=false}
-            </div>
+        <Grid style={{marginRight:-200}}>
+        <ul>
+        {this.state.invoices.map(invoice => <li key = {invoice.id} onClick={() => this.getInvoice(invoice.id)}>
+        Faktura nr #{invoice.id}{" "}{invoice.seller}{" "}{invoice.buyer}</li>)
+        }
+        </ul>
+        {this.state.clicked ? <Redirect to="/invoice"/> : this.state.clicked=false}
+        </Grid>
         )
     }
 }

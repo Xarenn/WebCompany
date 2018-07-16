@@ -6,6 +6,7 @@
     "axios": "^0.18.0",
     "jspdf": "^1.4.0",
     "jspdf-autotable": "^2.3.3",
+    "rc-menu": "^7.2.4",
     "react": "^16.3.2",
     "react-addons-css-transition-group": "^15.6.2",
     "react-bootstrap": "^0.32.1",

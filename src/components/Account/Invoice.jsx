@@ -116,7 +116,7 @@ class Invoice extends Component {
         let items = this.state.invoiced.items;
         
         return (<Jumbotron style={{margin:100}}><Grid>
-            <Button bsStyle="primary" onClick={() => this.editInvoice()}>Edit Invoice</Button>
+            <Button bsStyle="primary" onClick={() => this.editInvoice()}> {!this.state.edit ? "Edit Invoice" : "Show Invoice"}</Button>
             <h2 style={{marginLeft:200, marginBottom:50}}><Label>FAKTURA VAT NR {this.state.idInvoice} </Label></h2>
             {this.state.edit ? <InvoiceEdit invoice={this.state.invoiced} items = {items} columns = {columns} /> : 
             <Grid>
@@ -134,7 +134,7 @@ class Invoice extends Component {
             </Form>
             <BootstrapTable keyField='idInvoice' data = {items} columns = {columns} /></Grid>
             }
-            <Button bsStyle="primary" onClick={() => this.importToPdf()}>Import to Pdf</Button>
+            {!this.state.edit ? <Button bsStyle="primary" onClick={() => this.importToPdf()}>Import to Pdf</Button> : ""}
             </Grid></Jumbotron>)
     }
 }

@@ -94,7 +94,7 @@ export default class InvoiceEdit extends Component {
                 </FormGroup>
             </Form>
             <BootstrapTable keyField='idInvoice' data = {this.state.oldItems} columns = {this.state.columns} cellEdit = {this.cellEdit}/>
-            <Button bsStyle="primary" onClick={() => this.saveInvoice()}>Save Invoice</Button>
+            <Button bsStyle="primary" style={{}} onClick={() => this.saveInvoice()}>Save Invoice</Button>
             </Grid>)
     }
 }

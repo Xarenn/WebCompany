@@ -1,13 +1,9 @@
-import { Redirect } from 'react-router-dom';
 import React, { Component } from 'react';
-import { FormControl, FormGroup, Form, Row, Col, Label,
-    Grid, Jumbotron, Button, ControlLabel } from 'react-bootstrap';
+import { FormControl, FormGroup, Form, Button, ControlLabel } from 'react-bootstrap';
 import { connect} from 'react-redux';
-import { Authenticate, validatePassword, IsAuth } from './Auth';
+import { Authenticate, IsAuth } from './Auth';
 import {bindActionCreators} from 'redux';
-import {store} from '../../index';
 import SuccessLogin from './SuccessfulLogin';
-import AuthenticatedForm from './AuthenticatedForm';
 
 function mapStateToProps(state) {
     return {
