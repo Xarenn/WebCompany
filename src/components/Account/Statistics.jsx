@@ -77,7 +77,7 @@ class Statistics extends Component {
             <Menu style={{marginTop:50}}>
             <MenuItem style={{cursor:'pointer'}}>Taxes by month
             </MenuItem>
-            <MenuItem style={{cursor:'pointer'}} >Invoices by month</MenuItem>
+            <MenuItem style={{cursor:'pointer'}}>Invoices by month</MenuItem>
             <MenuItem style={{cursor:'pointer'}}>Warehouse</MenuItem>
             </Menu>
             </Jumbotron>
