@@ -6,6 +6,8 @@ Web service provides managing and storing invoices export it to PDF
 
 # Front-end
 
+Adding, editing invoices have implemented by Front-End and synchronized with server Back-end
+
 Authentication by React Redux reducers
 Tokens are saved in local storage in future i would like to save cookies session
 
