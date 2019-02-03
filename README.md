@@ -13,7 +13,7 @@ Tokens are saved in local storage in future i would like to save cookies session
 
 Enter to the main project and run <code>npm install </code>
 
-After installation run <code>npm run</code> 
+After installation write <code>npm run</code> 
 
 
 ![Alt text](img/ss1.png?raw=true "WebCompany") ![Alt text](img/ss2.png?raw=true "WebCompany")
