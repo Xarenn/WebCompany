@@ -9,7 +9,7 @@ Web service provides managing and storing invoices export it to PDF
 Adding, editing invoices have implemented by Front-End and synchronized with server Back-end
 
 Authentication by React Redux reducers
-Tokens are saved in local storage in future i would like to save cookies session
+Tokens are saved in local storage, in future i would like to save session in cookies
 
 # How to run it?
 
